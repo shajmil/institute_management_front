@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+    <div class="col-1"></div>
+     <div class="col-sm-10">
+         <div class="card shadow "  >
+            <div class="row">
+                <div class="col-sm-12 col-lg-6">
+                    <div class="card-body ms-2" >
+                        <div class="container">
+                        <h6 class="mt-5">START FOR FREE</h6>
+                        <h2 class="">Create new account <span class="dot text-warning">.</span></h2>
+                        <p class="accc mt-4">Already A Member? <a routerLink=""><span class="reg text-warning">Log In</span></a></p> 
+<form action="" [formGroup]="registerForm">
+                        <input class="input mt-5 " type="text" formControlName="username" placeholder="Gmail" id="user">  
+                        <p [ngStyle]="{color:'red'}" *ngIf="  this.registerForm.get('username')?.errors && this.registerForm.get('username')?.touched">INVALID USER MAIL</p>
+                      
+                      <!-- <input class="input mt-2 " type="text" formControlName="acno" placeholder="Account Number" id="acc">    <br>
+                      <p [ngStyle]="{color:'red'}" *ngIf=" f.acno.errors?.['pattern'] && f.acno?.touched"> acno num must be number </p> -->
+                      <input class="input mt-2" type="password" formControlName="pswd"  minlength="5" placeholder="Password" id="pass"> 
+                      <p [ngStyle]="{color:'red'}" *ngIf=" f.pswd.errors?.['minlength'] && f.pswd?.touched"> min length 6</p>
+
+                      <!-- <div class="d-flex justify-content-center align-items-center"> -->
+                    <!-- </div> -->
+                        
+                        <div class="d-flex justify-content-center align-items-center">
+                        <button class="btn btn-warning mt-5 mb-5 shadow" (click)="signUp()">Create account</button></div>
+                    </form>  </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6 col-1"></div>
+            </div>
+        
+      </div>
+
+
+</div>
+<div class="col-1"></div></div>
+</div>
