@@ -39,6 +39,7 @@ import { RegistrationComponent } from './admin/registration/registration.compone
 import { ModalComponent } from './admin/modal/modal.component';
 import { InterceptorService } from './headers.interceptor';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { LandingComponent } from './landing/landing.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     RegistrationComponent,
     ModalComponent,
     NotfoundComponent,
+    LandingComponent,
 
 
 

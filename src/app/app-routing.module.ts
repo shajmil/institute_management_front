@@ -13,55 +13,75 @@ import { AuthGuardGuard } from './auth/auth-guard.guard';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { DashComponent } from './students/dash/dash.component';
 import { StudentloginComponent } from './students/studentlogin/studentlogin.component';
+import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [
   {
     path: 'students',
     component: StudentloginComponent,
+
+
   },
   {
-    path: "",
-    pathMatch: "full",
-    redirectTo: "auth",
+    path: '',
+    pathMatch: 'full',
+    component:LandingComponent ,
   },
-
 
   // {
   //   path: 'studentdash',
   //   component: DashComponent,
   // },
 
-
-{ path: 'teachers', loadChildren: () => import('./teachers/teachers.module').then(m => m.TeachersModule) , canActivate:[AuthGuardTeacherGuard],},
-{ path: 'students', loadChildren: () => import('./students/students.module').then(m => m.StudentsModule), canActivate:[AuthGuardStudentGuard]},
-{ path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) ,canActivate: [AuthGuardGuard],},
-
-
-
-{
-  path:'admin',component:LoginComponent
-  },{
-    path:'registration',component:RegistrationComponent
-  },
-  
   {
-    path:'dashboard',component:DashboardComponent,canActivate:[AuthGuardAdminGuard],
+    path: 'teachers',
+    loadChildren: () =>
+      import('./teachers/teachers.module').then((m) => m.TeachersModule),
+    canActivate: [AuthGuardTeacherGuard],
   },
   {
-    path:'orders',component:OrdersComponent
+    path: 'students',
+    loadChildren: () =>
+      import('./students/students.module').then((m) => m.StudentsModule),
+    canActivate: [AuthGuardStudentGuard],
   },
   {
-    path:'about',component:AboutComponent
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    canActivate: [AuthGuardGuard],
   },
 
+  {
+    path: 'admin',
+    component: LoginComponent,
+  },
+  {
+    path: 'registration',
+    component: RegistrationComponent,
+  },
 
-{
-  path:'**',component:NotfoundComponent
-},
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuardAdminGuard],
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent,
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+  },
+
+  {
+    path: '**',
+    component: NotfoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
