@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -7,13 +8,16 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DatabaseServiceService {
+  baseUrl: string;
   getcourse() {
     throw new Error('Method not implemented.');
   }
   currentAcno: any;
  
  
-  constructor(private route:Router,public http:HttpClient)  { }
+  constructor(private route:Router,public http:HttpClient)  { 
+    this.baseUrl = environment.apiUrl;
+  }
   login(acno:any,pswd:any){
     const data={
       acno,pswd    
@@ -21,7 +25,7 @@ export class DatabaseServiceService {
     this.currentAcno=acno
     
    
-   return this.http.post('http://localhost:3000/Teacherlogin',data)}
+   return this.http.post(`${this.baseUrl}/Teacherlogin`,data)}
    getstudent(teacher:any){
    let instituteId= localStorage.getItem('instituteId')
     // console.log('teacher:any: ', teacher);
@@ -29,7 +33,7 @@ export class DatabaseServiceService {
    teacher,   
    instituteId
     }
-    return this.http.post('http://localhost:3000/showstudent',data) 
+    return this.http.post(`${this.baseUrl}/showstudent`,data) 
    }
 
 
@@ -47,7 +51,7 @@ export class DatabaseServiceService {
       )
     }
     // console.log('data: ', data);
-    return this.http.delete('http://localhost:3000/deletestudent/'+student,headerOptions)
+    return this.http.delete(`${this.baseUrl}/deletestudent/`+student,headerOptions)
           // console.log('data: ', data);
     // this.todo.splice(t,1)
   
@@ -82,7 +86,7 @@ export class DatabaseServiceService {
     //     firstname,lastname,email,password,address,gender,formdata
     //     }
         // console.log('data: ', data);
-     return this.http.post('http://localhost:3000/addstudent',formdata ,)
+     return this.http.post(`${this.baseUrl}/addstudent`,formdata ,)
   
     
   

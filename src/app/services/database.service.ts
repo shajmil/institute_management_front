@@ -2,7 +2,7 @@ import { transition } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -25,8 +25,10 @@ export class DatabaseService {
  ]
   details: any;
   totalRecords: any;
+  baseUrl: string;
  
 constructor(private route:Router,public http:HttpClient) { 
+  this.baseUrl = environment.apiUrl;
   this. details=this.userDetails
   this.getDetails();
   this.saveDetails();
@@ -79,11 +81,11 @@ getDetails(){
 }
 getusers(instituteId:any){
   // console.log('hi');
-  return this.http.get(`http://localhost:3000/showcust/${instituteId}`) 
+  return this.http.get(`${this.baseUrl}/showcust/${instituteId}`) 
 }
 getcourse(instituteId:any){
   // console.log('hi');
-  return this.http.get(`http://localhost:3000/getcourse/${instituteId}`) 
+  return this.http.get(`${this.baseUrl}/getcourse/${instituteId}`) 
 }
 add(email:any,password:any,firstname:any,lastname:any,address:any,gender:any,image:any,course:any, instituteId:any){
   console.log('course: ', course);
@@ -110,7 +112,7 @@ add(email:any,password:any,firstname:any,lastname:any,address:any,gender:any,ima
   //     }
       // console.log('data: ', data);
       console.log('formdata: ', formdata);
-   return this.http.post('http://localhost:3000/add',formdata ,)
+   return this.http.post(`${this.baseUrl}/add`,formdata ,)
 
   
 
@@ -125,7 +127,7 @@ add(email:any,password:any,firstname:any,lastname:any,address:any,gender:any,ima
       {
       id,firstname,lastname,email,password,address,gender,SelectedCourse}
     
-      return this.http.patch('http://localhost:3000/update',data)
+      return this.http.patch(`${this.baseUrl}/update`,data)
   }
  
   login(acno:any,pswd:any){
@@ -136,7 +138,7 @@ add(email:any,password:any,firstname:any,lastname:any,address:any,gender:any,ima
     this.currentAcno=acno
     this.saveDetails()
     
-   return this.http.post('http://localhost:3000/login',data)}
+   return this.http.post(`${this.baseUrl}/login`,data)}
   signUp(username:any,password:any){
     console.log('password: ', password);
   
@@ -146,7 +148,7 @@ add(email:any,password:any,firstname:any,lastname:any,address:any,gender:any,ima
     }
     console.log('data: ', data);
   
-   return this.http.post('http://localhost:3000/register',data)
+   return this.http.post(`${this.baseUrl}/register`,data)
     
   //   var details = this.userDetails
   //   acno=Number(acno)
@@ -176,7 +178,7 @@ remove(email:any){
     email:email
   }
   // console.log('data: ', data);
-  return this.http.delete('http://localhost:3000/deleteCus',this.getEmailAndInstuteId())
+  return this.http.delete(`${this.baseUrl}/deleteCus`,this.getEmailAndInstuteId())
         // console.log('data: ', data);
   // this.todo.splice(t,1)
   this.saveDetails()
@@ -196,7 +198,7 @@ remove(email:any){
       )
     }
   // console.log('data: ', data);
-  return this.http.delete('http://localhost:3000/deleteClass/'+className,headerOptions)
+  return this.http.delete(`${this.baseUrl}/deleteClass/`+className,headerOptions)
         // console.log('data: ', data);
   // this.todo.splice(t,1)
   this.saveDetails()
@@ -209,7 +211,7 @@ remove(email:any){
       fees,className,description,instituteId
     
     }
-    return this.http.post('http://localhost:3000/addclass',data)
+    return this.http.post(`${this.baseUrl}/addclass`,data)
 
   }
 }
