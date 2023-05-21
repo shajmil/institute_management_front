@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StudentloginComponent } from './studentlogin/studentlogin.component';
 import { DashComponent } from './dash/dash.component';
 
-import { NgCreditCardModule } from "angular-credit-card";
+
 import { CardComponent } from './card/card.component';
 
 @NgModule({
@@ -20,7 +20,7 @@ import { CardComponent } from './card/card.component';
   imports: [
     CommonModule,
     StudentsRoutingModule,
-    FormsModule,ReactiveFormsModule,NgCreditCardModule,FormsModule
+    FormsModule,ReactiveFormsModule,FormsModule
   ]
 })
 export class StudentsModule { }

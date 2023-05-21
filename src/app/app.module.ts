@@ -37,7 +37,6 @@ import { ListviewComponent } from './admin/listview/listview.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegistrationComponent } from './admin/registration/registration.component';
 import { ModalComponent } from './admin/modal/modal.component';
-import { NgCreditCardModule } from "angular-credit-card";
 import { InterceptorService } from './headers.interceptor';
 import { NotfoundComponent } from './notfound/notfound.component';
 
